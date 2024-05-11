@@ -1,0 +1,5 @@
+package gamePart
+
+func СreatePerson() {
+
+}
