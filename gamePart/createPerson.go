@@ -9,7 +9,7 @@ import (
 
 type Person struct {
 	Name string
-	Sex  int
+	Sex  string
 	Prof assistant.Prof
 }
 
@@ -43,6 +43,7 @@ func getcomand() bool {
 }
 
 var chooseProf int
+var chooseSex int
 
 func NP(comand string) Person {
 	if comand == "create" {
@@ -50,10 +51,12 @@ func NP(comand string) Person {
 		fmt.Fscan(os.Stdin, &NewPerson.Name)
 		fmt.Print("Введите пол 1 - Женский, 2 - Мужской: ")
 		for {
-			fmt.Fscan(os.Stdin, &NewPerson.Sex)
-			if NewPerson.Sex == 1 {
+			fmt.Fscan(os.Stdin, &chooseSex)
+			if chooseSex == 1 {
+				NewPerson.Sex = "женский"
 				break
-			} else if NewPerson.Sex == 2 {
+			} else if chooseSex == 2 {
+				NewPerson.Sex = "мужской"
 				break
 			} else {
 				fmt.Println("Введите корректную команду")
