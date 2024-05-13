@@ -12,23 +12,13 @@ func main() {
 	var GoGame string
 	fmt.Println(assistant.Hi)
 	fmt.Println(assistant.Start)
-	fmt.Fscan(os.Stdin, &GoGame)
-	if GoGame == "start" {
-		gamePart.СreatePerson(GoGame)
-
-	} else {
-		fmt.Println(assistant.Start_no)
+	for {
 		fmt.Fscan(os.Stdin, &GoGame)
-
+		if GoGame == "start" {
+			gamePart.Persons(GoGame)
+			break
+		} else {
+			fmt.Println("Введите корректную команду")
+		}
 	}
-
-	// var name string
-	// var age int
-	// fmt.Print("Введите имя: ")
-	// fmt.Fscan(os.Stdin, &name)
-
-	// fmt.Print("Введите возраст: ")
-	// fmt.Fscan(os.Stdin, &age)
-
-	// fmt.Println(name, age)
 }
