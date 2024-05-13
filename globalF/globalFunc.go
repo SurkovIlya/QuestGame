@@ -3,7 +3,6 @@ package globalF
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/SurkovIlya/MiniQuest-on-GO/assistant"
@@ -19,14 +18,15 @@ func SavePerson(NewPerson assistant.Person) {
 
 	personData, err := os.ReadFile("savedPerons.json")
 	if err != nil {
-		log.Fatal("Cannot load savedPerons.json:", err)
+
+		os.Create("savedPerons.json")
 	}
 
 	var ArrPerson BPersons
 
 	err = json.Unmarshal(personData, &ArrPerson)
 	if err != nil {
-		log.Fatal("Cannot load savedPerons.json:", err)
+		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
 	}
 
 	ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
@@ -37,7 +37,7 @@ func SavePerson(NewPerson assistant.Person) {
 
 	}
 
-	err = os.WriteFile("./savedPerons.json", SavePersons, 0)
+	err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
 	if err != nil {
 		fmt.Println(err)
 	}
