@@ -10,15 +10,19 @@ import (
 
 func main() {
 	var GoGame string
+	var ownerUser assistant.Person
 	fmt.Println(assistant.Hi)
 	fmt.Println(assistant.Start)
 	for {
 		fmt.Fscan(os.Stdin, &GoGame)
 		if GoGame == "start" {
-			gamePart.Persons(GoGame)
+			ownerUser = gamePart.Persons(GoGame)
 			break
 		} else {
 			fmt.Println("Введите корректную команду")
 		}
 	}
+	fmt.Println(assistant.TxtPart1)
+	gamePart.TalkwhithMam(ownerUser)
+
 }

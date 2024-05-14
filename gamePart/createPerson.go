@@ -20,7 +20,8 @@ var NewPerson assistant.Person
 
 var ChoosePerson string
 
-func Persons(goGame string) {
+func Persons(goGame string) assistant.Person {
+	var User assistant.Person
 	fmt.Println(assistant.Line)
 	fmt.Println(assistant.Start_yes)
 	for {
@@ -32,18 +33,32 @@ func Persons(goGame string) {
 	}
 	if ChoosePerson == "create" {
 		NP(ChoosePerson)
-		globalF.SavePerson(NewPerson)
+		User = assistant.ProgrssUser(NewPerson)
+		globalF.SavePerson(User)
 	} else if ChoosePerson == "person" {
 		listPerson := SelectPerson()
 		fmt.Println("Выбирите персонажа:")
+		var indexPerson int
 		for i, per := range listPerson.Persons {
 			fmt.Printf("%v) %v \n", i, per)
 		}
 
+		for {
+			fmt.Fscan(os.Stdin, &indexPerson)
+			if indexPerson < len(listPerson.Persons) {
+				User = assistant.ProgrssUser(NewPerson)
+				// globalF.SavePerson(User)
+				break
+				//реализовать ид персонажей и проверку на существует такой или нет
+
+			} else {
+				fmt.Println("Введите корректный номер персонажа")
+			}
+		}
 	} else {
 		fmt.Println("Ошибка обработки данны")
 	}
-
+	return User
 }
 
 func getcomand() bool {
@@ -100,14 +115,15 @@ func NP(comand string) assistant.Person {
 func SelectPerson() globalF.BPersons {
 	personData, err := os.ReadFile("savedPerons.json")
 	if err != nil {
-		log.Fatal("Cannot load savedPerons.json:", err)
+		log.Fatal("У вас нет сохраненных персанажей")
+
 	}
 
 	var ArrSelectPerson globalF.BPersons
 
 	err = json.Unmarshal(personData, &ArrSelectPerson)
 	if err != nil {
-		log.Fatal("Cannot load savedPerons.json:", err)
+		log.Fatal("У вас нет сохраненных персанажей")
 	}
 	return ArrSelectPerson
 }

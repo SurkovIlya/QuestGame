@@ -27,19 +27,29 @@ func SavePerson(NewPerson assistant.Person) {
 	err = json.Unmarshal(personData, &ArrPerson)
 	if err != nil {
 		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
+		SavePersons, err := json.Marshal(ArrPerson)
+		if err != nil {
+			fmt.Println(err)
+
+		}
+
+		err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else {
+
+		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
+
+		SavePersons, err := json.Marshal(ArrPerson)
+		if err != nil {
+			fmt.Println(err)
+
+		}
+
+		err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
-
-	ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
-
-	SavePersons, err := json.Marshal(ArrPerson)
-	if err != nil {
-		fmt.Println(err)
-
-	}
-
-	err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
-	if err != nil {
-		fmt.Println(err)
-	}
-
 }

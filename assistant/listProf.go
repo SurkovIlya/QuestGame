@@ -1,11 +1,5 @@
 package assistant
 
-type Person struct {
-	Name string `json:"name"`
-	Sex  string `json:"sex"`
-	Prof Prof   `json:"prof"`
-}
-
 type Prof struct {
 	Name           string `json:"nameProf"`
 	Specifications struct {
