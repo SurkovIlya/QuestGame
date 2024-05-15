@@ -46,7 +46,7 @@ func Persons(goGame string) assistant.Person {
 		for {
 			fmt.Fscan(os.Stdin, &indexPerson)
 			if indexPerson < len(listPerson.Persons) {
-				User = assistant.ProgrssUser(NewPerson)
+				User = assistant.ProgrssUser(listPerson.Persons[indexPerson])
 				// globalF.SavePerson(User)
 				break
 				//реализовать ид персонажей и проверку на существует такой или нет
