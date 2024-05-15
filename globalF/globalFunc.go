@@ -13,8 +13,6 @@ type BPersons struct {
 	Persons []assistant.Person
 }
 
-// var SavePerson []Person
-
 func SavePerson(NewPerson assistant.Person) {
 
 	personData, err := os.ReadFile("savedPerons.json")
@@ -53,15 +51,15 @@ func SavePerson(NewPerson assistant.Person) {
 			}
 		}
 		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
-				SavePersons, err := json.Marshal(ArrPerson)
-				if err != nil {
-					fmt.Println(err)
+		SavePersons, err := json.Marshal(ArrPerson)
+		if err != nil {
+			fmt.Println(err)
 
-				}
+		}
 
-				err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
-				if err != nil {
-					fmt.Println(err)
+		err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
+		if err != nil {
+			fmt.Println(err)
 		}
 
 	}

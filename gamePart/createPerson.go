@@ -10,12 +10,6 @@ import (
 	"github.com/SurkovIlya/MiniQuest-on-GO/globalF"
 )
 
-// type Person struct {
-// 	Name string         `json:"name"`
-// 	Sex  string         `json:"sex"`
-// 	Prof assistant.Prof `json:"prof"`
-// }
-
 var NewPerson assistant.Person
 
 var ChoosePerson string
@@ -47,10 +41,7 @@ func Persons(goGame string) assistant.Person {
 			fmt.Fscan(os.Stdin, &indexPerson)
 			if indexPerson < len(listPerson.Persons) {
 				User = assistant.ProgrssUser(listPerson.Persons[indexPerson])
-				// globalF.SavePerson(User)
 				break
-				//реализовать ид персонажей и проверку на существует такой или нет
-
 			} else {
 				fmt.Println("Введите корректный номер персонажа")
 			}

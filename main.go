@@ -25,5 +25,6 @@ func main() {
 	}
 	fmt.Println(assistant.TxtPart1)
 	gamePart.TalkwhithMam(ownerUser)
+	gamePart.WayToColledge(ownerUser)
 
 }
