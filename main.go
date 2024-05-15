@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	var GoGame string
 	var ownerUser assistant.Person
 	fmt.Println(assistant.Hi)
