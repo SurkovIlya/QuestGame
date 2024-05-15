@@ -47,7 +47,12 @@ func SavePerson(NewPerson assistant.Person) {
 		for i, value := range ArrPerson.Persons {
 			if value.Id == NewPerson.Id {
 				ArrPerson.Persons = append(ArrPerson.Persons[:i], ArrPerson.Persons[i+1:]...)
-				ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
+				break
+			} else {
+				break
+			}
+		}
+		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
 				SavePersons, err := json.Marshal(ArrPerson)
 				if err != nil {
 					fmt.Println(err)
@@ -57,21 +62,6 @@ func SavePerson(NewPerson assistant.Person) {
 				err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
 				if err != nil {
 					fmt.Println(err)
-				} else {
-					ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
-
-					SavePersons, err := json.Marshal(ArrPerson)
-					if err != nil {
-						fmt.Println(err)
-
-					}
-
-					err = os.WriteFile("./savedPerons.json", SavePersons, 0666)
-					if err != nil {
-						fmt.Println(err)
-					}
-				}
-			}
 		}
 
 	}
