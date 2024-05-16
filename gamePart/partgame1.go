@@ -59,7 +59,25 @@ func WayToColledge(ownerUser assistant.Person) {
 				fmt.Println(assistant.ErrorCheck)
 				fmt.Printf("Вы: Я быть торопливый человек... \n")
 				fmt.Printf(assistant.Btalk2)
-				// тут будет разбор с бабкой несу сумки и т.д. За помощь должен качнуться плюс доп сюжет
+				fmt.Printf("...Вы берете пакеты и идете с бабушкой до ее дома...\n %v ... Неожиданно вкрикнуа бабушка", assistant.Btalk3)
+				fmt.Println("... Вы видите место назначение, но вдруг из-за угла выскакивают 2 человека...")
+				assistant.RespG()
+				fmt.Println("... Ва провалили проверку на ИНТЕЛЕКТ. И решаете сразу драться ...")
+				if ownerUser.Atak > assistant.Gopnik.Atak {
+					fmt.Printf("... Вы нонесли кретический урон!... Гопники убегают \n")
+					fmt.Printf("... ВЫ УВЕЛИЧИЛИ СВОИ СТАТЫ \n Сила: %v + %v \n Ловкость: %v + %v \n Здоровье: %v +%v \n", ownerUser.Prof.Specifications.Str, 3, ownerUser.Prof.Specifications.Agil, 1, ownerUser.Prof.Specifications.Hp, 50)
+					ownerUser.Prof.Specifications.Str = ownerUser.Prof.Specifications.Str + 3
+					ownerUser.Prof.Specifications.Agil = ownerUser.Prof.Specifications.Agil + 1
+					ownerUser.Prof.Specifications.Hp = ownerUser.Prof.Specifications.Hp + 50
+					fmt.Println("... Вы помогли бабушке и защитили от гопников. Вы получаете игровой предмет СТАРИННЫЙ КЛЮЧ")
+					ownerUser.Inventar = struct {
+						Name    string "json:\"name\""
+						UpdHp   int    "json:\"updhp\""
+						UpdMana int    "json:\"updmana\""
+						UpdAtak int    "json:\"updatakf\""
+					}{"oldKey", 0, 0, 0}
+				}
+				// персонаж получил ключ. далее идет короткая версия сюжета и финал
 			}
 			break
 		} else if varAnswe == 2 {
