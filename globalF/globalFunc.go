@@ -47,7 +47,7 @@ func SavePerson(NewPerson assistant.Person) {
 				ArrPerson.Persons = append(ArrPerson.Persons[:i], ArrPerson.Persons[i+1:]...)
 				break
 			} else {
-				break
+				continue
 			}
 		}
 		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)

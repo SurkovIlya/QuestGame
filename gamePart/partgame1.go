@@ -76,6 +76,8 @@ func WayToColledge(ownerUser assistant.Person) {
 						UpdMana int    "json:\"updmana\""
 						UpdAtak int    "json:\"updatakf\""
 					}{"oldKey", 0, 0, 0}
+					globalF.SavePerson(ownerUser)
+					fmt.Println("Прогресс успешно сохранен!")
 				}
 				// персонаж получил ключ. далее идет короткая версия сюжета и финал
 			}

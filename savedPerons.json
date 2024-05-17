@@ -1,1 +1,26 @@
-{"Persons":[{"id":1715775781,"name":"Tomi","sex":"мужской","ataka":23,"prof":{"nameProf":"Ловкач","specifications":{"hp":600,"mana":500,"str":8,"agil":22,"inelect":12}},"inventar":{"name":"","updhp":0,"updmana":0,"updatakf":0}},{"id":1715800811,"name":"Гоша","sex":"мужской","ataka":33,"prof":{"nameProf":"Силач","specifications":{"hp":980,"mana":350,"str":18,"agil":7,"inelect":7}},"inventar":{"name":"","updhp":0,"updmana":0,"updatakf":0}}]}
+{
+    "Persons": [
+        {
+            "id": 1715932777,
+            "name": "Tomi",
+            "sex": "мужской",
+            "ataka": 23,
+            "prof": {
+                "nameProf": "Ловкач",
+                "specifications": {
+                    "hp": 600,
+                    "mana": 500,
+                    "str": 8,
+                    "agil": 22,
+                    "inelect": 12
+                }
+            },
+            "inventar": {
+                "name": "",
+                "updhp": 0,
+                "updmana": 0,
+                "updatakf": 0
+            }
+        }
+    ]
+}
