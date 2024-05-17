@@ -69,7 +69,7 @@ func WayToColledge(ownerUser assistant.Person) {
 					ownerUser.Prof.Specifications.Str = ownerUser.Prof.Specifications.Str + 3
 					ownerUser.Prof.Specifications.Agil = ownerUser.Prof.Specifications.Agil + 1
 					ownerUser.Prof.Specifications.Hp = ownerUser.Prof.Specifications.Hp + 50
-					fmt.Println("... Вы помогли бабушке и защитили от гопников. Вы получаете игровой предмет СТАРИННЫЙ КЛЮЧ")
+					fmt.Printf("... Вы помогли бабушке и защитили от гопников. Вы получаете игровой предмет СТАРИННЫЙ КЛЮЧ \n \n")
 					ownerUser.Inventar = struct {
 						Name    string "json:\"name\""
 						UpdHp   int    "json:\"updhp\""
@@ -77,9 +77,10 @@ func WayToColledge(ownerUser assistant.Person) {
 						UpdAtak int    "json:\"updatakf\""
 					}{"oldKey", 0, 0, 0}
 					globalF.SavePerson(ownerUser)
-					fmt.Println("Прогресс успешно сохранен!")
+					fmt.Printf("Прогресс успешно сохранен! \n \n")
+					fmt.Printf("... Вы взгленули на ключ и сразу поняли что нужно было делать ...\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
 				}
-				// персонаж получил ключ. далее идет короткая версия сюжета и финал
+				// сюжет для быстрой концовки с ключем в отдельный файл
 			}
 			break
 		} else if varAnswe == 2 {
