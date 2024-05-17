@@ -11,6 +11,7 @@ import (
 var varAnswe int
 
 func TalkwhithMam(ownerUser assistant.Person) {
+
 	fmt.Printf("МАМА: %v, Ты уже встал? \n", ownerUser.Name)
 
 	fmt.Printf("Выбирите варианты ответа:\n 1) Да;\n 2) Не твое собачье дело! (Проверить свою ловкость. Нужное значение: ---> 21 <---) ;\n 3) Промолчать \n")
@@ -43,6 +44,7 @@ func TalkwhithMam(ownerUser assistant.Person) {
 }
 
 func WayToColledge(ownerUser assistant.Person) {
+
 	fmt.Printf("%v \n %v \n", assistant.TxrProlog, assistant.TxtStreet)
 	fmt.Printf(assistant.Btalk1)
 	fmt.Printf("Попытаться прервать бездумный поток мыслей Бабки. (Требуемый уровень Интелекта ---> 15 <---)")
@@ -54,7 +56,13 @@ func WayToColledge(ownerUser assistant.Person) {
 			fmt.Printf("Уровень вашего интелекта: %v \n", checkI)
 			if checkI > 15 {
 				fmt.Println("Вы: Прошу прощение... Я очень тороплюсь. \n ....Вы успешно распрощались с бабкой и направились дальше.")
-				// успешно ... можно вывести текст интерфейса и начать новый уровень(сохранить персонажа и прогрес игры)
+				fmt.Println("... Вы успешно добираетесь до учебы вовремя!")
+				ownerUser.Lvlgame.Lvl = 1
+				ownerUser.Lvlgame.Way = 11
+				globalF.SavePerson(ownerUser)
+				fmt.Printf("Прогресс успешно сохранен! \n \n")
+				fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+
 			} else {
 				fmt.Println(assistant.ErrorCheck)
 				fmt.Printf("Вы: Я быть торопливый человек... \n")
@@ -76,17 +84,35 @@ func WayToColledge(ownerUser assistant.Person) {
 						UpdMana int    "json:\"updmana\""
 						UpdAtak int    "json:\"updatakf\""
 					}{"oldKey", 0, 0, 0}
+					ownerUser.Lvlgame.Lvl = 1
+					ownerUser.Lvlgame.Way = 10
 					globalF.SavePerson(ownerUser)
 					fmt.Printf("Прогресс успешно сохранен! \n \n")
 					fmt.Printf("... Вы взгленули на ключ и сразу поняли что нужно было делать ...\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+
 				}
-				// сюжет для быстрой концовки с ключем в отдельный файл
+
 			}
 			break
 		} else if varAnswe == 2 {
 			fmt.Printf(assistant.Btalk2)
-			// тут будет разбор с бабкой несу сумки и т.д. За помощь должен качнуться доп сюжет и ответвление
-			break
+			fmt.Printf("...Вы берете пакеты и идете с бабушкой до ее дома...\n %v ... Неожиданно вкрикнуа бабушка \n", assistant.Btalk3)
+			fmt.Printf("... Вы видите место назначение, но вдруг из-за угла выскакивают 2 человека...Увидев вас почувствовали что лучше пройти мимо...\n")
+			fmt.Printf(assistant.Btalk4)
+			fmt.Printf("... Вы помогли бабушке донести пакеты... Вы получили предмет ПИРОЖОК С КАРТОШОЙ \n \n")
+			ownerUser.Inventar = struct {
+				Name    string "json:\"name\""
+				UpdHp   int    "json:\"updhp\""
+				UpdMana int    "json:\"updmana\""
+				UpdAtak int    "json:\"updatakf\""
+			}{"пирожок с картошкой", 150, 50, 0}
+			fmt.Println("... Вы успешно добираетесь до учебы вовремя!")
+			ownerUser.Lvlgame.Lvl = 1
+			ownerUser.Lvlgame.Way = 11
+			globalF.SavePerson(ownerUser)
+			fmt.Printf("Прогресс успешно сохранен! \n \n")
+			fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+
 		} else {
 			fmt.Println("Укажите корректный номер варианта ответа")
 		}

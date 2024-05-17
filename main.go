@@ -23,8 +23,22 @@ func main() {
 			fmt.Println("Введите корректную команду")
 		}
 	}
-	fmt.Println(assistant.TxtPart1)
-	gamePart.TalkwhithMam(ownerUser)
-	gamePart.WayToColledge(ownerUser)
+
+	if ownerUser.Lvlgame.Lvl == 0 {
+		fmt.Println(assistant.TxtPart1)
+		gamePart.TalkwhithMam(ownerUser)
+		gamePart.WayToColledge(ownerUser)
+		if ownerUser.Lvlgame.Way == 10 {
+			gamePart.SecretWay()
+		} else if ownerUser.Lvlgame.Way == 11 {
+			gamePart.ColledgeDay(ownerUser)
+		}
+	} else if ownerUser.Lvlgame.Lvl == 1 {
+		if ownerUser.Lvlgame.Way == 10 {
+			gamePart.SecretWay()
+		} else if ownerUser.Lvlgame.Way == 11 {
+			gamePart.ColledgeDay(ownerUser)
+		}
+	}
 
 }

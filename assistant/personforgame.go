@@ -1,7 +1,11 @@
 package assistant
 
 type Person struct {
-	Id       int64  `json:"id"`
+	Id      int64 `json:"id"`
+	Lvlgame struct {
+		Lvl int `json:"lvl"`
+		Way int `json:"way"`
+	} `json:"lvlgame"`
 	Name     string `json:"name"`
 	Sex      string `json:"sex"`
 	Atak     int    `json:"ataka"`
