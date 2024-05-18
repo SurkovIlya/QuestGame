@@ -10,7 +10,7 @@ import (
 
 var varAnswe int
 
-func TalkwhithMam(ownerUser assistant.Person) {
+func TalkwhithMam(ownerUser assistant.Person) assistant.Person {
 
 	fmt.Printf("МАМА: %v, Ты уже встал? \n", ownerUser.Name)
 
@@ -40,14 +40,14 @@ func TalkwhithMam(ownerUser assistant.Person) {
 			fmt.Println("Укажите корректный номер варианта ответа")
 		}
 	}
-
+	return ownerUser
 }
 
-func WayToColledge(ownerUser assistant.Person) {
+func WayToColledge(ownerUser assistant.Person) assistant.Person {
 
 	fmt.Printf("%v \n %v \n", assistant.TxrProlog, assistant.TxtStreet)
 	fmt.Printf(assistant.Btalk1)
-	fmt.Printf("Попытаться прервать бездумный поток мыслей Бабки. (Требуемый уровень Интелекта ---> 15 <---)")
+	fmt.Printf("Попытаться прервать бездумный поток мыслей Бабки. (Требуемый уровень Интелекта ---> 15 <---) \n")
 	fmt.Printf("1) Да \n 2) Нет \n")
 	for {
 		fmt.Fscan(os.Stdin, &varAnswe)
@@ -62,6 +62,8 @@ func WayToColledge(ownerUser assistant.Person) {
 				globalF.SavePerson(ownerUser)
 				fmt.Printf("Прогресс успешно сохранен! \n \n")
 				fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+				fmt.Printf("Введие любую цифру для продолжения")
+				fmt.Fscan(os.Stdin, &varAnswe)
 
 			} else {
 				fmt.Println(assistant.ErrorCheck)
@@ -89,6 +91,8 @@ func WayToColledge(ownerUser assistant.Person) {
 					globalF.SavePerson(ownerUser)
 					fmt.Printf("Прогресс успешно сохранен! \n \n")
 					fmt.Printf("... Вы взгленули на ключ и сразу поняли что нужно было делать ...\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+					fmt.Printf("Введие любую цифру для продолжения")
+					fmt.Fscan(os.Stdin, &varAnswe)
 
 				}
 
@@ -108,14 +112,16 @@ func WayToColledge(ownerUser assistant.Person) {
 			}{"пирожок с картошкой", 150, 50, 0}
 			fmt.Println("... Вы успешно добираетесь до учебы вовремя!")
 			ownerUser.Lvlgame.Lvl = 1
-			ownerUser.Lvlgame.Way = 11
+			ownerUser.Lvlgame.Way = 12
 			globalF.SavePerson(ownerUser)
 			fmt.Printf("Прогресс успешно сохранен! \n \n")
 			fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
-
+			fmt.Printf("Введие любую цифру для продолжения")
+			fmt.Fscan(os.Stdin, &varAnswe)
+			break
 		} else {
 			fmt.Println("Укажите корректный номер варианта ответа")
 		}
 	}
-
+	return ownerUser
 }

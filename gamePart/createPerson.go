@@ -17,7 +17,7 @@ var ChoosePerson string
 func Persons(goGame string) assistant.Person {
 	var User assistant.Person
 	fmt.Println(assistant.Line)
-	fmt.Println(assistant.Start_yes)
+	fmt.Printf(assistant.Start_yes)
 	for {
 		if getcomand() {
 			break
@@ -25,30 +25,46 @@ func Persons(goGame string) assistant.Person {
 			fmt.Println("Введите корректную команду")
 		}
 	}
-	if ChoosePerson == "create" {
-		NP(ChoosePerson)
-		User = assistant.ProgrssUser(NewPerson)
-		globalF.SavePerson(User)
-	} else if ChoosePerson == "person" {
-		listPerson := SelectPerson()
-		fmt.Println("Выбирите персонажа:")
-		var indexPerson int
-		for i, per := range listPerson.Persons {
-			fmt.Printf("%v) %v \n", i, per)
-		}
+	for {
+		if ChoosePerson == "create" {
+			NP(ChoosePerson)
+			User = assistant.ProgrssUser(NewPerson)
+			globalF.SavePerson(User)
+			break
+		} else if ChoosePerson == "person" {
+			_, err := os.ReadFile("savedPerons.json")
+			if err != nil {
 
-		for {
-			fmt.Fscan(os.Stdin, &indexPerson)
-			if indexPerson < len(listPerson.Persons) {
-				User = assistant.ProgrssUser(listPerson.Persons[indexPerson])
-				break
+				fmt.Println("У вас нет сохраненных персонажей!")
+				fmt.Fscan(os.Stdin, &ChoosePerson)
+				continue
 			} else {
-				fmt.Println("Введите корректный номер персонажа")
+				listPerson := SelectPerson()
+				fmt.Println("Выбирите персонажа:")
+				var indexPerson int
+				for i, per := range listPerson.Persons {
+					fmt.Printf("%v) %v \n", i, per)
+				}
+
+				for {
+					fmt.Fscan(os.Stdin, &indexPerson)
+					if indexPerson < len(listPerson.Persons) {
+						User = assistant.ProgrssUser(listPerson.Persons[indexPerson])
+						break
+					} else {
+						fmt.Println("Введите корректный номер персонажа")
+					}
+				}
+				break
 			}
+
+		} else {
+			fmt.Println("Ошибка обработки данны")
+			fmt.Fscan(os.Stdin, &ChoosePerson)
+			continue
 		}
-	} else {
-		fmt.Println("Ошибка обработки данны")
 	}
+
 	return User
 }
 
