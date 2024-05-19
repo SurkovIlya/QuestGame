@@ -35,13 +35,21 @@ func Persons(goGame string) assistant.Person {
 			globalF.SavePerson(NewPerson)
 			break
 		} else if ChoosePerson == "person" {
-			_, err := os.ReadFile("savedPerons.json")
+			personData, err := os.ReadFile("savedPerons.json")
+			var arrPerson globalF.BPersons
+			json.Unmarshal(personData, &arrPerson)
 			if err != nil {
 
 				fmt.Println("У вас нет сохраненных персонажей!")
 				fmt.Fscan(os.Stdin, &ChoosePerson)
 				continue
 			} else {
+				if len(arrPerson.Persons) == 0 {
+					fmt.Println("У вас нет сохраненных персонажей!")
+					fmt.Fscan(os.Stdin, &ChoosePerson)
+				} else {
+
+				}
 				listPerson := SelectPerson()
 				fmt.Println("Выберите персонажа:")
 				var indexPerson int
