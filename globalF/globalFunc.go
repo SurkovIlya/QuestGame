@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/SurkovIlya/MiniQuest-on-GO/assistant"
 )
@@ -22,12 +21,10 @@ func SavePerson(NewPerson assistant.Person) {
 	}
 
 	var ArrPerson BPersons
-	if NewPerson.Id == 0 {
-		NewPerson.Id = time.Now().Unix()
-	}
 
 	err = json.Unmarshal(personData, &ArrPerson)
-	if err != nil {
+
+	if err != nil || len(ArrPerson.Persons) == 0 {
 
 		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
 		SavePersons, err := json.Marshal(ArrPerson)
@@ -44,13 +41,15 @@ func SavePerson(NewPerson assistant.Person) {
 
 		for i, value := range ArrPerson.Persons {
 			if value.Id == NewPerson.Id {
+
 				ArrPerson.Persons = append(ArrPerson.Persons[:i], ArrPerson.Persons[i+1:]...)
+				ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
 				break
 			} else {
 				continue
 			}
 		}
-		ArrPerson.Persons = append(ArrPerson.Persons, NewPerson)
+
 		SavePersons, err := json.Marshal(ArrPerson)
 		if err != nil {
 			fmt.Println(err)

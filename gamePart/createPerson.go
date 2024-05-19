@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/SurkovIlya/MiniQuest-on-GO/assistant"
 	"github.com/SurkovIlya/MiniQuest-on-GO/globalF"
@@ -15,7 +16,7 @@ var NewPerson assistant.Person
 var ChoosePerson string
 
 func Persons(goGame string) assistant.Person {
-	var User assistant.Person
+	// var User assistant.Person
 	fmt.Println(assistant.Line)
 	fmt.Printf(assistant.Start_yes)
 	for {
@@ -27,9 +28,11 @@ func Persons(goGame string) assistant.Person {
 	}
 	for {
 		if ChoosePerson == "create" {
-			NP(ChoosePerson)
-			User = assistant.ProgrssUser(NewPerson)
-			globalF.SavePerson(User)
+			NewPerson = NP(ChoosePerson)
+			NewPerson.Atak = NewPerson.Prof.Specifications.Str + NewPerson.Inventar.UpdAtak + 15
+			NewPerson.Id = time.Now().Unix()
+
+			globalF.SavePerson(NewPerson)
 			break
 		} else if ChoosePerson == "person" {
 			_, err := os.ReadFile("savedPerons.json")
@@ -40,7 +43,7 @@ func Persons(goGame string) assistant.Person {
 				continue
 			} else {
 				listPerson := SelectPerson()
-				fmt.Println("Выбирите персонажа:")
+				fmt.Println("Выберите персонажа:")
 				var indexPerson int
 				for i, per := range listPerson.Persons {
 					fmt.Printf("%v) %v \n", i, per)
@@ -49,7 +52,7 @@ func Persons(goGame string) assistant.Person {
 				for {
 					fmt.Fscan(os.Stdin, &indexPerson)
 					if indexPerson < len(listPerson.Persons) {
-						User = assistant.ProgrssUser(listPerson.Persons[indexPerson])
+						NewPerson = assistant.ProgrssUser(listPerson.Persons[indexPerson])
 						break
 					} else {
 						fmt.Println("Введите корректный номер персонажа")
@@ -65,7 +68,7 @@ func Persons(goGame string) assistant.Person {
 		}
 	}
 
-	return User
+	return NewPerson
 }
 
 func getcomand() bool {
@@ -100,7 +103,7 @@ func NP(comand string) assistant.Person {
 		}
 	}
 
-	fmt.Printf("Выберите желаемую проффесию: %v %v %v ", assistant.Profs[0], assistant.Profs[1], assistant.Profs[2])
+	fmt.Printf("Выберите желаемую проффесию:\n %v \n%v \n%v \n", assistant.Profs[0], assistant.Profs[1], assistant.Profs[2])
 	for {
 		fmt.Fscan(os.Stdin, &chooseProf)
 		if chooseProf == 1 {

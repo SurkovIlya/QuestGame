@@ -14,7 +14,7 @@ func TalkwhithMam(ownerUser assistant.Person) assistant.Person {
 
 	fmt.Printf("МАМА: %v, Ты уже встал? \n", ownerUser.Name)
 
-	fmt.Printf("Выбирите варианты ответа:\n 1) Да;\n 2) Не твое собачье дело! (Проверить свою ловкость. Нужное значение: ---> 21 <---) ;\n 3) Промолчать \n")
+	fmt.Printf("Выберите варианты ответа:\n 1) Да;\n 2) Не твое собачье дело! (Проверить свою ловкость. Нужное значение: ---> 21 <---) ;\n 3) Промолчать \n")
 	for {
 		fmt.Fscan(os.Stdin, &varAnswe)
 		if varAnswe == 1 {
@@ -47,13 +47,13 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 
 	fmt.Printf("%v \n %v \n", assistant.TxrProlog, assistant.TxtStreet)
 	fmt.Printf(assistant.Btalk1)
-	fmt.Printf("Попытаться прервать бездумный поток мыслей Бабки. (Требуемый уровень Интелекта ---> 15 <---) \n")
-	fmt.Printf("1) Да \n 2) Нет \n")
+	fmt.Printf("Попытаться прервать бездумный поток мыслей Бабки. (Требуемый уровень Интеллекта ---> 15 <---) \n")
+	fmt.Printf("1) Да \n2) Нет \n")
 	for {
 		fmt.Fscan(os.Stdin, &varAnswe)
 		if varAnswe == 1 {
 			checkI := globalF.CheckInt(ownerUser.Prof.Specifications.Inelect)
-			fmt.Printf("Уровень вашего интелекта: %v \n", checkI)
+			fmt.Printf("Уровень вашего интеллекта: %v \n", checkI)
 			if checkI > 15 {
 				fmt.Println("Вы: Прошу прощение... Я очень тороплюсь. \n ....Вы успешно распрощались с бабкой и направились дальше.")
 				fmt.Println("... Вы успешно добираетесь до учебы вовремя!")
@@ -62,7 +62,7 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 				globalF.SavePerson(ownerUser)
 				fmt.Printf("Прогресс успешно сохранен! \n \n")
 				fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
-				fmt.Printf("Введие любую цифру для продолжения")
+				fmt.Printf("Введие любую цифру для продолжения\n")
 				fmt.Fscan(os.Stdin, &varAnswe)
 
 			} else {
@@ -72,10 +72,12 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 				fmt.Printf("...Вы берете пакеты и идете с бабушкой до ее дома...\n %v ... Неожиданно вкрикнуа бабушка", assistant.Btalk3)
 				fmt.Println("... Вы видите место назначение, но вдруг из-за угла выскакивают 2 человека...")
 				assistant.RespG()
-				fmt.Println("... Ва провалили проверку на ИНТЕЛЕКТ. И решаете сразу драться ...")
+				fmt.Println("... Ва провалили проверку на ИНТЕЛЛЕКТ. И решаете сразу драться ...")
+				fmt.Println(ownerUser.Atak)
+				fmt.Println(assistant.Gopnik.Atak)
 				if ownerUser.Atak > assistant.Gopnik.Atak {
-					fmt.Printf("... Вы нонесли кретический урон!... Гопники убегают \n")
-					fmt.Printf("... ВЫ УВЕЛИЧИЛИ СВОИ СТАТЫ \n Сила: %v + %v \n Ловкость: %v + %v \n Здоровье: %v +%v \n", ownerUser.Prof.Specifications.Str, 3, ownerUser.Prof.Specifications.Agil, 1, ownerUser.Prof.Specifications.Hp, 50)
+					fmt.Printf("... Вы нанесли критический  урон!... Гопники убегают \n")
+					fmt.Printf("... ВЫ УВЕЛИЧИЛИ СВОИ ХАРАКТЕРИСТИКИ \n Сила: %v + %v \n Ловкость: %v + %v \n Здоровье: %v +%v \n", ownerUser.Prof.Specifications.Str, 3, ownerUser.Prof.Specifications.Agil, 1, ownerUser.Prof.Specifications.Hp, 50)
 					ownerUser.Prof.Specifications.Str = ownerUser.Prof.Specifications.Str + 3
 					ownerUser.Prof.Specifications.Agil = ownerUser.Prof.Specifications.Agil + 1
 					ownerUser.Prof.Specifications.Hp = ownerUser.Prof.Specifications.Hp + 50
@@ -90,8 +92,8 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 					ownerUser.Lvlgame.Way = 10
 					globalF.SavePerson(ownerUser)
 					fmt.Printf("Прогресс успешно сохранен! \n \n")
-					fmt.Printf("... Вы взгленули на ключ и сразу поняли что нужно было делать ...\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
-					fmt.Printf("Введие любую цифру для продолжения")
+					fmt.Printf("... Вы взгленули на ключ и сразу поняли что нужно делать ...\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
+					fmt.Printf("Введие любую цифру для продолжения\n")
 					fmt.Fscan(os.Stdin, &varAnswe)
 
 				}
@@ -101,7 +103,7 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 		} else if varAnswe == 2 {
 			fmt.Printf(assistant.Btalk2)
 			fmt.Printf("...Вы берете пакеты и идете с бабушкой до ее дома...\n %v ... Неожиданно вкрикнуа бабушка \n", assistant.Btalk3)
-			fmt.Printf("... Вы видите место назначение, но вдруг из-за угла выскакивают 2 человека...Увидев вас почувствовали что лучше пройти мимо...\n")
+			fmt.Printf("... Вы видите место назначение, но вдруг из-за угла выскакивают 2 человека...Увидев вас почувствовали, что лучше пройти мимо...\n")
 			fmt.Printf(assistant.Btalk4)
 			fmt.Printf("... Вы помогли бабушке донести пакеты... Вы получили предмет ПИРОЖОК С КАРТОШОЙ \n \n")
 			ownerUser.Inventar = struct {
@@ -116,7 +118,7 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 			globalF.SavePerson(ownerUser)
 			fmt.Printf("Прогресс успешно сохранен! \n \n")
 			fmt.Printf("\n \n КОНЕЦ ПЕРВОЙ ГЛАВЫ \n \n")
-			fmt.Printf("Введие любую цифру для продолжения")
+			fmt.Printf("Введие любую цифру для продолжения\n")
 			fmt.Fscan(os.Stdin, &varAnswe)
 			break
 		} else {

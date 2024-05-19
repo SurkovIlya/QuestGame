@@ -22,6 +22,6 @@ var UserP Person
 
 func ProgrssUser(char Person) Person {
 	UserP = char
-	UserP.Atak = UserP.Prof.Specifications.Str + UserP.Inventar.UpdAtak + 15
+
 	return UserP
 }
