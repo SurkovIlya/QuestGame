@@ -47,25 +47,26 @@ func Persons(goGame string) assistant.Person {
 				if len(arrPerson.Persons) == 0 {
 					fmt.Println("У вас нет сохраненных персонажей!")
 					fmt.Fscan(os.Stdin, &ChoosePerson)
+					continue
 				} else {
+					listPerson := SelectPerson()
+					fmt.Println("Выберите персонажа:")
+					var indexPerson int
+					for i, per := range listPerson.Persons {
+						fmt.Printf("%v) %v \n", i, per)
+					}
 
-				}
-				listPerson := SelectPerson()
-				fmt.Println("Выберите персонажа:")
-				var indexPerson int
-				for i, per := range listPerson.Persons {
-					fmt.Printf("%v) %v \n", i, per)
-				}
-
-				for {
-					fmt.Fscan(os.Stdin, &indexPerson)
-					if indexPerson < len(listPerson.Persons) {
-						NewPerson = assistant.ProgrssUser(listPerson.Persons[indexPerson])
-						break
-					} else {
-						fmt.Println("Введите корректный номер персонажа")
+					for {
+						fmt.Fscan(os.Stdin, &indexPerson)
+						if indexPerson < len(listPerson.Persons) {
+							NewPerson = assistant.ProgrssUser(listPerson.Persons[indexPerson])
+							break
+						} else {
+							fmt.Println("Введите корректный номер персонажа")
+						}
 					}
 				}
+
 				break
 			}
 
