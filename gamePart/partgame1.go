@@ -83,10 +83,10 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 					ownerUser.Prof.Specifications.Hp = ownerUser.Prof.Specifications.Hp + 50
 					fmt.Printf("... Вы помогли бабушке и защитили от гопников. Вы получаете игровой предмет СТАРИННЫЙ КЛЮЧ \n \n")
 					ownerUser.Inventar = struct {
-						Name    string "json:\"name\""
-						UpdHp   int    "json:\"updhp\""
-						UpdMana int    "json:\"updmana\""
-						UpdAtak int    "json:\"updatakf\""
+						Name    string `json:"name"`
+						UpdHp   int    `json:"updhp"`
+						UpdMana int    `json:"updmana"`
+						UpdAtak int    `json:"updatakf"`
 					}{"oldKey", 0, 0, 0}
 					ownerUser.Lvlgame.Lvl = 1
 					ownerUser.Lvlgame.Way = 10
@@ -107,10 +107,10 @@ func WayToColledge(ownerUser assistant.Person) assistant.Person {
 			fmt.Printf(assistant.Btalk4)
 			fmt.Printf("... Вы помогли бабушке донести пакеты... Вы получили предмет ПИРОЖОК С КАРТОШОЙ \n \n")
 			ownerUser.Inventar = struct {
-				Name    string "json:\"name\""
-				UpdHp   int    "json:\"updhp\""
-				UpdMana int    "json:\"updmana\""
-				UpdAtak int    "json:\"updatakf\""
+				Name    string `json:"name"`
+				UpdHp   int    `json:"updhp"`
+				UpdMana int    `json:"updmana"`
+				UpdAtak int    `json:"updatakf"`
 			}{"пирожок с картошкой", 150, 50, 0}
 			fmt.Println("... Вы успешно добираетесь до учебы вовремя!")
 			ownerUser.Lvlgame.Lvl = 1

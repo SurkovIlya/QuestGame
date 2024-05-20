@@ -5,7 +5,7 @@ import "fmt"
 type NpcStat struct {
 	Name string `json:"name"`
 	Atak int    `json:"ataka"`
-	Hp   int    "json:\"hp\""
+	Hp   int    `json:"hp"`
 }
 
 var Gopnik NpcStat
